@@ -40,6 +40,7 @@ class Triad::DecksController < ApplicationController
       redirect_to deck_path(@deck)
     else
       set_search_and_cards
+      set_collection_ids
       flash_errors(@deck)
       render :new
     end
