@@ -5,7 +5,7 @@ namespace :minions do
 
     puts 'Creating minions'
 
-    behaviors = %w(en de fr ja).each_with_object({}) do |locale, h|
+    behaviors = %w(en de fr ja tc).each_with_object({}) do |locale, h|
       XIVData.sheet('CompanionMove', locale: locale).each do |behavior|
         next unless behavior['Name'].present?
 
@@ -19,7 +19,7 @@ namespace :minions do
       MinionBehavior.find_or_create_by!(behavior)
     end
 
-    races = %w(en de fr ja).each_with_object({}) do |locale, h|
+    races = %w(en de fr ja tc).each_with_object({}) do |locale, h|
       XIVData.sheet('MinionRace', locale: locale).each do |race|
         next unless race['Name'].present?
 
@@ -33,7 +33,7 @@ namespace :minions do
       MinionRace.find_or_create_by!(race)
     end
 
-    skill_types = %w(en de fr ja).each_with_object({}) do |locale, h|
+    skill_types = %w(en de fr ja tc).each_with_object({}) do |locale, h|
       XIVData.sheet('MinionSkillType', locale: locale).each do |type|
         next unless type['Name'].present?
 
@@ -48,7 +48,7 @@ namespace :minions do
     end
 
     count = Minion.count
-    minions = %w(en de fr ja).each_with_object({}) do |locale, h|
+    minions = %w(en de fr ja tc).each_with_object({}) do |locale, h|
       XIVData.sheet('Companion', locale: locale).each do |minion|
         next if minion['Order'] == '0'
 
@@ -63,7 +63,7 @@ namespace :minions do
     end
 
     # Add the remaining data from the transient sheet
-    %w(en de fr ja).each do |locale, h|
+    %w(en de fr ja tc).each do |locale, h|
       XIVData.sheet('CompanionTransient', locale: locale).each do |minion|
         next unless minions.has_key?(minion['#'])
 

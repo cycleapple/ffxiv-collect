@@ -4,7 +4,7 @@ namespace :quests do
     puts 'Creating quests'
 
     count = Quest.count
-    quests = %w(en de fr ja).each_with_object({}) do |locale, h|
+    quests = %w(en de fr ja tc).each_with_object({}) do |locale, h|
       XIVData.sheet('Quest', locale: locale).each do |quest|
         next unless quest['Name'].present?
 

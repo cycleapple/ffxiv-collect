@@ -13,7 +13,7 @@ namespace :facewear do
       h[id] = { id: id, name_en: sanitize_name(facewear['Singular']), order: facewear['Order'], icons: [] }
     end
 
-    %w(de fr ja).each do |locale|
+    %w(de fr ja tc).each do |locale|
       XIVData.sheet('GlassesStyle', locale: locale).each do |facewear|
         next unless facewear['Singular'].present? && facewear['Icon'] != '0'
 

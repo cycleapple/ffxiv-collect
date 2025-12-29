@@ -65,6 +65,7 @@ module ApplicationHelper
     when :fr then 'fr'
     when :de then 'de'
     when :ja then 'jp'
+    when :tc then 'tw'
     else 'na'
     end
   end
@@ -74,7 +75,8 @@ module ApplicationHelper
   end
 
   def teamcraft_url(type, id)
-    "https://ffxivteamcraft.com/db/#{I18n.locale}/#{type}/#{id}"
+    locale = I18n.locale == :tc ? :zh : I18n.locale
+    "https://ffxivteamcraft.com/db/#{locale}/#{type}/#{id}"
   end
 
   def garland_tools_url(type, id)

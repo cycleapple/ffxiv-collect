@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale, :set_characters, :display_announcements
 
-  SUPPORTED_LOCALES = %w(en de fr ja).freeze
+  SUPPORTED_LOCALES = %w(en de fr ja tc).freeze
 
   def new_session_path(scope)
     new_user_session_path

@@ -12,7 +12,7 @@ namespace :triad do
       # Typeless cards reference ID 0, so create it
       CardType.find_or_create_by!(id: 0, name_en: 'Normal', name_de: 'Normal', name_fr: 'Normal', name_ja: 'ノーマル')
 
-      types = %w(en de fr ja).map do |locale|
+      types = %w(en de fr ja tc).map do |locale|
         XIVData.sheet('TripleTriadCardType', locale: locale).filter_map do |type|
           type['Name']
         end

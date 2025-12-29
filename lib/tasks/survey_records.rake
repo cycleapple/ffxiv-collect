@@ -22,7 +22,7 @@ namespace :survey_records do
 
     count = SurveyRecord.count
 
-    records = %w(en de fr ja).each_with_object({}) do |locale, h|
+    records = %w(en de fr ja tc).each_with_object({}) do |locale, h|
       XIVData.sheet('VVDNotebookContents', locale: locale).each do |record|
         next unless record['Name'].present?
 

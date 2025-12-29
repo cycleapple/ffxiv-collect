@@ -20,7 +20,7 @@ namespace :items do
       h[data[:id]] = data
     end
 
-    %w(de fr ja).each do |locale|
+    %w(de fr ja tc).each do |locale|
       XIVData.sheet('Item', locale: locale).each do |item|
         next unless item['Name'].present?
 
@@ -127,11 +127,11 @@ namespace :items do
     puts 'Setting extra data for collectables based on item unlocks'
 
     Item.where(unlock_type: 'Barding').each do |item|
-      Barding.find_by(id: item.unlock_id)&.update!(item.slice(:description_en, :description_de, :description_fr, :description_ja))
+      Barding.find_by(id: item.unlock_id)&.update!(item.slice(:description_en, :description_de, :description_fr, :description_ja, :description_tc))
     end
 
     Item.where(unlock_type: 'Fashion').each do |item|
-      Fashion.find_by(id: item.unlock_id)&.update!(item.slice(:description_en, :description_de, :description_fr, :description_ja))
+      Fashion.find_by(id: item.unlock_id)&.update!(item.slice(:description_en, :description_de, :description_fr, :description_ja, :description_tc))
     end
   end
 

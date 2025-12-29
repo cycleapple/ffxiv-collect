@@ -25,7 +25,7 @@ namespace :frames do
     frames.delete('299')
     frames.delete('346')
 
-    %w(de fr ja).each do |locale|
+    %w(de fr ja tc).each do |locale|
       XIVData.sheet('BannerBg', locale: locale).each do |bg|
         id = bg['UnlockCondition']
 
@@ -89,13 +89,13 @@ namespace :frames do
         created = Frame.create!(data)
 
         if frame['name_en'].match?(/Conflict \d+/)
-          texts = %w(en de fr ja).each_with_object({}) do |locale, h|
+          texts = %w(en de fr ja tc).each_with_object({}) do |locale, h|
             h["text_#{locale}"] = I18n.t('sources.crystalline_conflict', locale: locale)
           end
 
           created.sources.create!(**texts, type: PVP_TYPE, limited: true)
         elsif frame[:unlock_type] == 'Quest'
-          texts = %w(en de fr ja).each_with_object({}) do |locale, h|
+          texts = %w(en de fr ja tc).each_with_object({}) do |locale, h|
             h["text_#{locale}"] = Quest.find(frame[:unlock_id])["name_#{locale}"]
           end
 
@@ -105,7 +105,7 @@ namespace :frames do
           instance = Instance.find(frame[:unlock_id])
           instance_type = instance.content_type.name_en
 
-          texts = %w(en de fr ja).each_with_object({}) do |locale, h|
+          texts = %w(en de fr ja tc).each_with_object({}) do |locale, h|
             h["text_#{locale}"] = instance["name_#{locale}"]
           end
 

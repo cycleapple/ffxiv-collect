@@ -13,7 +13,7 @@
     <a class="nav-link dropdown-toggle p-0 mr-2" href="#" id="localeDropdown" role="button" data-toggle="dropdown"
       aria-haspopup="true" aria-expanded="false"><%= cookies[:locale].upcase %></a>
     <div class="dropdown-menu" aria-labelledBy="localeDropdown">
-      <% %w(EN DE FR JA).each do |locale| %>
+      <% %w(EN DE FR JA TC).each do |locale| %>
         <%= link_to locale, locale_set_path(locale: locale), class: 'dropdown-item', method: :post %>
       <% end %>
     </div>

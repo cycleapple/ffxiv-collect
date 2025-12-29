@@ -34,7 +34,7 @@ class Source < ApplicationRecord
 
   def self.ransackable_attributes(auth_object = nil)
     super + %w(
-      text_en text_de text_fr text_ja
+      text_en text_de text_fr text_ja text_tc
       premium limited
       related_id type_id related_type collectable_id collectable_type
     )
@@ -48,7 +48,7 @@ class Source < ApplicationRecord
   def assign_relations!
     locale = nil
 
-    %w(en de fr ja).each do |i18n|
+    %w(en de fr ja tc).each do |i18n|
       break locale = i18n if send("text_#{i18n}_changed?")
     end
 
@@ -106,7 +106,7 @@ class Source < ApplicationRecord
   end
 
   def set_text_for_relation!(relation)
-    %w(en de fr ja).each do |locale|
+    %w(en de fr ja tc).each do |locale|
       self["text_#{locale}"] = relation["name_#{locale}"]
     end
   end

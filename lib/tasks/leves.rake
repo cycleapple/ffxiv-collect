@@ -12,7 +12,7 @@ namespace :leves do
                        'Weaver', 'Alchemist', 'Culinarian', 'Fisher']
 
     puts 'Creating leve categories'
-    categories = %w(en de fr ja).each_with_object({}) do |locale, h|
+    categories = %w(en de fr ja tc).each_with_object({}) do |locale, h|
       XIVData.sheet('LeveAssignmentType', locale: locale).each do |category|
         next unless category['Name'].present?
 
@@ -54,7 +54,7 @@ namespace :leves do
     puts 'Creating leves'
     count = Leve.count
 
-    leves = %w(en de fr ja).each_with_object({}) do |locale, h|
+    leves = %w(en de fr ja tc).each_with_object({}) do |locale, h|
       # Initialize the leves
       XIVData.sheet('Leve', locale: locale).each do |leve|
         next unless leve['Name'].present?

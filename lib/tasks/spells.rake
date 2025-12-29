@@ -17,21 +17,21 @@ namespace :spells do
       h[spell['Action']] = { id: spell['#'], aspects: {} }
     end
 
-    %w(en de fr ja).each do |locale|
+    %w(en de fr ja tc).each do |locale|
       XIVData.sheet('Action', locale: locale).each do |action|
         next unless spells.has_key?(action['#'])
         spells[action['#']]["name_#{locale}"] = sanitize_name(action['Name'])
       end
     end
 
-    %w(en de fr ja).each do |locale|
+    %w(en de fr ja tc).each do |locale|
       XIVData.sheet('ActionTransient', locale: locale).each do |action|
         next unless spells.has_key?(action['#'])
         spells[action['#']]["description_#{locale}"] = sanitize_text(action['Description'])
       end
     end
 
-    %w(en de fr ja).each do |locale|
+    %w(en de fr ja tc).each do |locale|
       XIVData.sheet('AozActionTransient', locale: locale).each do |spell|
         data = spells.values.find { |s| s[:id] == spell['#'] }
         next unless data.present?
@@ -66,7 +66,7 @@ namespace :spells do
         # Create a stub source based on the location provided by the spellbook for new spells
         next unless spell['location_en'].present?
 
-        texts = %w(en de fr ja).each_with_object({}) do |locale, h|
+        texts = %w(en de fr ja tc).each_with_object({}) do |locale, h|
           location = spell["location_#{locale}"]
           h["text_#{locale}"] = I18n.t('sources.unreported', location: location, locale: locale)
         end

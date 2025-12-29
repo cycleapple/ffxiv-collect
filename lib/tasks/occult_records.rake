@@ -7,7 +7,7 @@ namespace :occult_records do
 
     count = OccultRecord.count
 
-    records = %w(en de fr ja).each_with_object({}) do |locale, h|
+    records = %w(en de fr ja tc).each_with_object({}) do |locale, h|
       XIVData.sheet('MKDLore', locale: locale).each do |record|
         next unless record['Name'].present?
 

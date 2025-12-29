@@ -36,6 +36,7 @@ module FfxivCollect
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.i18n.enforce_available_locales = false
+    config.i18n.available_locales = [:en, :de, :fr, :ja, :tc]
 
     config.cache_store = :file_store, 'tmp/cache'
 

@@ -5,7 +5,7 @@ namespace :emotes do
 
     puts 'Creating emotes'
 
-    categories = %w(en de fr ja).each_with_object({}) do |locale, h|
+    categories = %w(en de fr ja tc).each_with_object({}) do |locale, h|
       XIVData.sheet('EmoteCategory', locale: locale).each do |category|
         next unless category['Name'].present?
 
@@ -19,7 +19,7 @@ namespace :emotes do
       EmoteCategory.find_or_create_by!(category)
     end
 
-    commands = %w(en de fr ja).each_with_object({}) do |locale, h|
+    commands = %w(en de fr ja tc).each_with_object({}) do |locale, h|
       XIVData.sheet('TextCommand', locale: locale).each do |command|
         next unless command['Command'].present?
 
@@ -30,7 +30,7 @@ namespace :emotes do
       end
     end
 
-    emotes = %w(en de fr ja).each_with_object({}) do |locale, h|
+    emotes = %w(en de fr ja tc).each_with_object({}) do |locale, h|
       XIVData.sheet('Emote', locale: locale).each do |emote|
         next unless emote['Name'].present? && emote['TextCommand'] != '0' && emote['UnlockLink'] != '0'
 

@@ -13,7 +13,7 @@ namespace :armoires do
     # The names are actually IDs referencing addon, so we need to look them up
     category_name_ids = categories.map { |category| category[:name] }
 
-    category_names = %w(en de fr ja).each_with_object({}) do |locale, h|
+    category_names = %w(en de fr ja tc).each_with_object({}) do |locale, h|
       XIVData.sheet('Addon', locale: locale).each do |addon|
         if category_name_ids.include?(addon['#'])
           data = h[addon['#']] || {}
@@ -46,8 +46,8 @@ namespace :armoires do
                       when /♀/ then 'female'
                       end
 
-      data.merge!(item.slice(:name_en, :name_de, :name_fr, :name_ja,
-                             :description_en, :description_de, :description_fr, :description_ja))
+      data.merge!(item.slice(:name_en, :name_de, :name_fr, :name_ja, :name_tc,
+                             :description_en, :description_de, :description_fr, :description_ja, :description_tc))
 
       # Update the Item to indicate that it unlocks this Armoire
       item.update!(unlock_type: 'Armoire', unlock_id: data[:id])
@@ -61,13 +61,13 @@ namespace :armoires do
 
         # Automatically create Achievement sources for new Armoire items
         if achievement = Achievement.find_by(item_id: armoire['Item'])
-          texts = %w(en de fr ja).each_with_object({}) do |locale, h|
+          texts = %w(en de fr ja tc).each_with_object({}) do |locale, h|
             h["text_#{locale}"] = achievement["name_#{locale}"]
           end
 
           created.sources.create!(**texts, type: ACHIEVEMENT_TYPE, related_type: 'Achievement', related_id: achievement.id)
         elsif PREMIUM_CATEGORIES.include?(armoire['Category'].to_i)
-          texts = %w(en de fr ja).each_with_object({}) do |locale, h|
+          texts = %w(en de fr ja tc).each_with_object({}) do |locale, h|
             h["text_#{locale}"] = I18n.t('sources.online_store', locale: locale)
           end
 

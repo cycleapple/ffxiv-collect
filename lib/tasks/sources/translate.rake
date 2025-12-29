@@ -9,7 +9,7 @@ namespace 'sources' do
 
       # Related sources (e.g. achievements)
       Source.where.not(related_type: nil).where.not(related_id: nil).includes(:related).each do |source|
-        %w(de fr ja).each do |locale|
+        %w(de fr ja tc).each do |locale|
           source["text_#{locale}"] = source.related["name_#{locale}"]
         end
 

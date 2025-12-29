@@ -6,7 +6,7 @@ namespace :fashions do
     puts 'Creating fashion accessories'
 
     count = Fashion.count
-    fashions = %w(en de fr ja).each_with_object({}) do |locale, h|
+    fashions = %w(en de fr ja tc).each_with_object({}) do |locale, h|
       XIVData.sheet('Ornament', locale: locale).each do |fashion|
         next unless fashion['Singular'].present?
         next if Fashion.facewear_ids.include?(fashion['#'].to_i)

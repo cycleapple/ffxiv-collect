@@ -2,7 +2,7 @@ class ApiController < ApplicationController
   skip_before_action :set_locale, :set_characters
   before_action :set_defaults, :set_language, :set_owned
 
-  SUPPORTED_LOCALES = %w(en de fr ja).freeze
+  SUPPORTED_LOCALES = %w(en de fr ja tc).freeze
 
   def render_not_found
     render json: { status: 404, error: 'Not found' }, status: :not_found

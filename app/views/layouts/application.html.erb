@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale == :tc ? 'zh-Hant' : I18n.locale %>">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#DAA556">
@@ -33,7 +33,7 @@
         <nav class="d-md-block collapse sidebar" id="sidebarMenu">
           <%= render 'layouts/sidebar' %>
         </nav>
-        <main role="main" class="col-12 mt-3 main<%= ' ja' if I18n.locale == :ja %>">
+        <main role="main" class="col-12 mt-3 main<%= ' ja' if I18n.locale == :ja %><%= ' tc' if I18n.locale == :tc %>">
           <%= render 'layouts/alerts' %>
           <%= yield %>
         </main>

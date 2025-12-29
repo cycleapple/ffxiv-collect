@@ -7,7 +7,7 @@ namespace :bardings do
 
     count = Barding.count
 
-    bardings = %w(en de fr ja).each_with_object({}) do |locale, h|
+    bardings = %w(en de fr ja tc).each_with_object({}) do |locale, h|
       XIVData.sheet('BuddyEquip', locale: locale).each do |barding|
         next unless barding['Name'].present? && barding['Order'] != '0'
 
