@@ -36,7 +36,7 @@ namespace :mounts do
 
     mounts.values.each do |mount|
       large_icon = mount[:icon].sub(/^004/, '068')
-      footprint_icon = 65000 + mount[:icon].to_i
+      footprint_icon = mount[:icon].sub(/^004/, '069')
 
       create_image(mount[:id], XIVData.image_path(large_icon), 'mounts/large')
       create_image(mount[:id], XIVData.image_path(mount.delete(:icon)), 'mounts/small')
